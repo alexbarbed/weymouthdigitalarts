@@ -1,0 +1,106 @@
+<html>
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap CSS stylesheet-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- jQuery JavaScript library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- Bootstrap JavaScript library -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- P5 JavaScript library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/p5.min.js"></script>
+<!-- P5 Sound Add-On JavaScript library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/addons/p5.sound.min.js"></script>
+
+  <script>
+  
+	var x = 0;
+	var y = 0;
+	var px = 0;
+	var py = 0;
+	var easing = 0.05;
+	var col = 0;
+	var osc;
+	var isPlaying = false;
+	var delay;
+	
+
+	function setup() {
+	  createCanvas(windowWidth, windowHeight);
+	  
+	  stroke(255);
+	  
+	  osc = new p5.Oscillator();
+	  osc.setType('triangle');
+	  osc.start();
+	  osc.amp(0);
+	  
+	  delay = new p5.Delay();
+	  //source, time, fb, filter freq
+	  delay.process(osc, 0.5, .7, 1000);
+	}
+
+	function draw() {
+	  if(mouseIsPressed){
+		brushDown();	
+		playSound();
+		osc.freq(y);
+		
+	  }else{stopSound();}
+	  delay.feedback(0.6)
+	}
+
+  
+	function brushDown(){
+	var targetX = mouseX;
+	  x += (targetX - x) * easing;
+	  var targetY = mouseY;
+	  y += (targetY - y) * easing;
+	  var weight = dist(x, y, px, py);
+	  strokeWeight(weight);
+	  
+	  stroke(col,66);
+	  line(x, y, px, py);
+	  py = y;
+	  px = x;
+	  
+	  if (col < 255){
+	  col++}else{col=0}
+	  
+	  
+	 }
+	 
+	function playSound(){
+		if (isPlaying == false){
+			isPlaying = true;
+			//
+			// ramp amplitude to 0.5 over 0.1 seconds
+			osc.amp(0.1, 0.05);
+		}
+	}
+
+	function stopSound(){
+	// ramp amplitude to 0 over 0.5 seconds
+		isPlaying = false;
+		osc.amp(0, 0.05);
+	}
+      
+    function touchMoved(){
+        brushDown();	
+		playSound();
+		osc.freq(y);
+        return false;
+    }
+      
+    function windowResized() {
+        resizeCanvas((window.innerWidth), window.innerHeight);
+    }
+
+</script>
+
+</head>
+
+<body>
+</body>
+</html>

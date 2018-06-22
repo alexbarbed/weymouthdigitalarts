@@ -1,0 +1,277 @@
+<html><head></head><body><pre>
+<h1 style='color:gray;'>Objects</h1 style='color:black;'>
+<h1>Objects Literals</h1>
+
+An Object Literal (often just referred to as an object) is a container of properties, where each property has a name and a value. 
+
+The name can be anything that is a valid variable name in JS. If it isn't, you can put the name in quotes. 
+The value can be anything except <i>undefined</i>, such as a number, a string, another object or the result of an expression or function call. 
+
+	var address_book = {
+		first_name: "Alex", // fine
+		"first-name": "Alex" // fine
+	};
+
+Object literals can be nested inside each other. 
+Name/value pairs are separated by commas. The use of the final comma in a list of properties is optional. 
+They are retrieved using dot notation, which is preferable and easy to read:
+
+	address_book.first_name; // Alex
+
+However, if the name is a reserved keyword or not a legal JS name, it can only be retrieved like this:
+
+	address_book[first-name];
+
+<b>Updating or adding properties</b>
+New properties can be added by declaring them anywhere in scope. Note use of assignment operator, not colon. 
+
+	address_book.last_name = "McKechnie";
+	
+Here's a test:
+<p style='color:blue;'>
+<script>
+
+	var address_book = {
+			first_name: "Alex" // fine
+		};
+		
+	address_book.last_name = "McKechnie";
+	
+	document.write("Added item to object is: " + address_book.last_name);
+	
+</script>
+<p style='color:black;'>
+<b>Objects are passed by reference</b>
+
+This means that if you say one object equals another, it shares the same value as the original object from that point onwards.
+
+	var list1 = {
+		apple: 'red',
+		banana: 'yellow'
+		};
+
+	var list2 = list1;
+
+	document.writeln("list2.apple = " + list2.apple);
+
+	list2.apple = 'brown';
+
+	document.write("list1.apple = " + list1.apple);
+
+Here's a test:
+<p style='color:blue;'>
+<script>	
+	var list1 = {
+		apple: 'red',
+		banana: 'yellow'
+		};
+
+	var list2 = list1;
+
+	document.writeln("list2.apple is same as list1.apple: " + list2.apple);
+	
+	document.writeln("Now we do this: list2.apple = 'brown';");
+
+	list2.apple = 'brown';
+
+	document.write("Now let's look at list1.apple: " + list1.apple);
+	
+</script>
+<p style='color:black;'>
+Because I changed the value of list2.apple, the value of list1.apple has changed too. They are both pointing at the same object in memory.
+This is very important thing to understand. If you copy an object then change the copy... the original changes too. 
+The copy is a kind of alias for the original. They will change together.  
+
+However, if you make a new variable and assign it the value of an object's property, rather than copying the whole thing, that new variable has
+it's own memory location, and the value in it is unique and independent of the original. 
+
+	var monkey = list2.apple;
+	monkey.apple = "ooh ooh";
+	document.write(list2.apple);
+
+This doesn't print 'ooh ooh'. It prints... <p style='color:blue;'>
+<script>
+	var monkey = list2.apple;
+	monkey.apple = "ooh ooh";
+	document.write(list2.apple);
+</script>	<p style='color:black;'>
+So simply put, if you copy an object wholesale, it's an alias. If you make a new variable and assign it a value from an object, it's unique.
+
+<b>Creating new instances of an Object Literal using Create.</b>
+You can do this using the <i>Object.create()</i> method. 
+Here's a test:
+
+	var testlist = Object.create(list1);
+	document.writeln("testlist.apple is same as list1.apple: " + testlist.apple);
+
+	This should copy the object and all its properties to the new object. The output is:
+<p style='color:blue;'><script>
+var testlist = Object.create(list1);
+document.writeln("testlist.apple is same as list1.apple: " + testlist.apple);
+</script><p style='color:black'>
+The burning question is: if you change a property in testlist, will it affect the corresponding property in list1?
+Let's test it.
+
+	testlist.apple = "yellow";
+	document.writeln("list1.apple is " + list1.apple);
+	document.writeln("testlist.apple is " + testlist.apple);
+output:
+<p style='color:blue;'><script>
+testlist.apple = "yellow";
+	document.writeln("list1.apple is " + list1.apple);
+	document.writeln("testlist.apple is " + testlist.apple);
+</script><p style='color:black'>Yay. 
+<h1>Objects created with a constructor function</h1>
+<b>Creating an Object which is <i>not</i> a literal...</b>
+This way of doing things is now less desirable, due to it being more complicated. However, there are advantages as you can adapt the prototype.
+Note that NewList is a constructor, and no object is created until you create a new instance of it: nl. 
+
+	function NewList(){
+		this.apple = "red";
+		this.banana = "yellow";
+		this.desc = "a list of fruits";
+		this.getInfo = function getInfo(){
+			return "colour is " + this.desc;
+			};
+		};
+	var nl = new NewList();
+	document.writeln(nl.getInfo());
+output:
+<p style='color:blue;'><script>
+function NewList(){
+	this.apple = "red";
+	this.banana = "yellow";
+	this.desc = "a list of fruits";
+	this.getInfo = function getInfo(){
+		return "colour is " + this.desc;
+		};
+	};
+var nl = new NewList();
+document.writeln(nl.getInfo());
+</script><p style='color:black'>
+And what if you make another instance and change its properties?
+Are you sure the new one won't affect the old one?
+
+	var nl2 = new NewList();
+	nl2.apple = "sausage";
+	document.writeln("nl.apple = "+nl.apple);
+	document.writeln("nl2.apple = "+nl2.apple);
+
+output:
+<p style='color:blue;'><script>
+	var nl2 = new NewList();
+	nl2.apple = "sausage";
+	document.writeln("nl.apple = "+nl.apple);
+	document.writeln("nl2.apple = "+nl2.apple);
+</script><p style='color:black'>
+Yay.
+
+<h1>Iterating through properties of an object</h1>
+The <b>for-in</b> statement will iterate through all the properties, including anything in the prototype tree and any functions,
+and it will list them in no particular order. It's therefore common to exclude functions, and check the property belongs to the object
+itself and not anything in the prototype(s):
+
+List1 is a simple variable Object Literal, specified as apple: 'red', banana: 'yellow'. We need to use <i>square brackets</i> to show the value, not dot notation. 
+
+	for (var thing in list1){
+		if (typeof list1[thing] !== 'function' && list1.hasOwnProperty(thing)) {
+			document.writeln('Name = ' + thing + ' and Value = ' + list1[thing] );
+		}
+	}
+output:<p style='color:blue;'><script>
+	for (var thing in list1){
+		if (typeof list1[thing] !== 'function' && list1.hasOwnProperty(thing)) {
+			document.writeln('Name = ' + thing + ' and Value = ' + list1[thing] );
+		}
+	}
+</script><p style='color:black'>
+
+NewList is an Object specified with a constructor function, like this.apple = 'red', this.banana = 'yellow'. We can't query this, but we <i>can</i> query
+the object we made from it: nl. In this instance, we still need to use <i>square brackets</i> to show the value, not dot notation. 
+Note that NewList constructor included a method, which would be listed if we hadn't filtered it out. 
+
+	for (var thing in nl){
+		if (typeof nl[thing] !== 'function' && nl.hasOwnProperty(thing)) {
+			document.writeln('Name = ' + thing + ' and Value = ' + nl[thing]);
+			}
+		}
+output:<p style='color:blue;'><script>
+	for (var thing in nl){
+		if (typeof nl[thing] !== 'function' && nl.hasOwnProperty(thing)) {
+			document.writeln('Name = ' + thing + ' and Value = ' + nl[thing]);
+			}
+		}
+</script><p style='color:black'>
+<h1>A single global variable</h1>
+To avoid having all your variables as global, you can create a single global object which everything else is then added to. 
+
+	var AM = {};
+	AM.message = "I'm not global :)";
+	AM.list283 = {
+		hat: 'Beret',
+		coat: 'Black',
+		tie: 'Stripey'
+	};
+	document.writeln(AM.message);
+	document.writeln(AM.list283.tie);
+<p style='color:blue;'><script>
+	var AM = {};
+	AM.message = "I'm not global :)";
+	AM.list283 = {
+		hat: 'Beret',
+		coat: 'Black',
+		tie: 'Stripey'
+	};
+	document.writeln(AM.message);
+	document.writeln(AM.list283.tie);
+</script><p style='color:black'>
+
+<-- ***********************************************************************-->
+<b>Prototype example from Crockford which I don't completely understand</b>
+
+What if you want to <i>copy</i> an object but not have any effect on the original?
+Objects support single inheritance. 
+Note that if the prototypes change, the children are updated too. 
+
+
+Here's a test:
+
+	if (typeof Object.create != 'function'){ 	// <i>checks to see if browser supports Object.create</i>
+		Object.create = function(o){		// <i>creates an anonymous function, so that the object won't be global</i>
+			var F = function(){};		// <i>creates empty function F</i>
+			F.prototype = o;		// <i>assigns the prototype o to F</i>
+			return new F();			// <i>creates new instance of it when called</i>
+			};
+		}
+		var list3 = Object.create(list1)	// <i>Calls the Object.create function in order to make a new 'instance' of list1, but independent of it</i>
+		document.writeln("list3.apple is same as list1.apple: " + list3.apple)
+<p style='color:blue;'><script>
+if (typeof Object.create != 'function'){
+	Object.create = function(o){
+		var F = function(){};
+		F.prototype = o;
+		return new F();
+		};
+	}
+	var list3 = Object.create(list1)
+	document.writeln("list3.apple is same as list1.apple: " + list3.apple)
+</script><p style='color:black'>
+<b>When should you use Crockford's prototype method above?</b>
+They are an optimisation, which is only useful if you want to inherit an object so you can use its methods, but add in extra things that won't change the original prototype. 
+If your objects have their own methods explicitly included, then there's no point. Seems a right faff. 
+Still, if you want to do this, you can use this function wholesale. 
+
+
+
+<b>To discover...</b>
+Object Literals can have methods. Objects created with prototypes can also have methods. However, when you use the 'prototype/new' way of doing things, you can add on a method to the prototype and this won't be replicated in every instance. So something where you've got loads of object literals with lots of methods could - in theory - result in a massive memory load. ??? 
+
+
+<p style='color:grey;'>
+Advanced notes from 'JavaScript - The Good Parts' by Douglas Crockford, O'Reilly. Chapter 3 - Objects.
+Straightforward notes from http://www.htmlgoodies.com/beyond/javascript/object.create-the-new-way-to-create-objects-in-javascript.html
+</pre></body></html>
+
+
+
+

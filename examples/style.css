@@ -1,0 +1,37 @@
+section {
+	font-family: 'Droid Sans', sans-serif;
+}
+li {
+	font-family: 'Droid Sans', sans-serif;
+	display: inline;
+	margin: 0; padding: 0;
+}
+ul {
+	font-family: 'Droid Sans', sans-serif;
+	display: inline;
+	margin: 0; padding: 0;
+}
+a {
+	font-family: 'Droid Sans', sans-serif;
+}
+a:link, a:visited {
+    background-color: #f44336;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+a:hover, a:active {
+    background-color: red;
+}
+
+article {
+	/* border-style: solid;
+	border-width: medium; 
+	background-color: #CCFFFF; */
+	width: 640px;
+}
+body {
+	background-image:url('assets/background_noise.png')
+}

@@ -1,0 +1,77 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--iphone stuff-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+  <style> body {padding: 0; margin: 0} </style> <!-- this line removes any default padding -->
+  <!-- P5 JavaScript library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/p5.min.js"></script>
+ 
+  <script>
+  
+		var robotImage;
+		var bots = [];  // Declare array to hold Robot objects
+
+		function preload() {
+		  robotImage = loadImage("assets/particle.png");
+		}
+
+		function setup() {
+		  createCanvas(windowWidth, windowHeight);
+		  imageMode(CENTER);
+		}
+
+		function draw() {
+		  background(131,131,255);
+		  // Update and display each bot in the array
+		  for (var i = 0; i < bots.length; i++) {
+			bots[i].update();
+			bots[i].display();
+			if(bots.length > 100){bots.shift();}
+		  }
+		  if (mouseIsPressed){
+			bots.push(new Robot(robotImage, mouseX, mouseY));
+		  }
+		}
+      
+      function touchMoved(){
+        bots.push(new Robot(robotImage, mouseX, mouseY));
+          return false;
+        } 
+        
+      
+      function windowResized() {
+        resizeCanvas((window.innerWidth), window.innerHeight);
+    }
+		
+		
+
+		function Robot(img, tempX, tempY, testSound) {
+		  // Set initial values for properties
+		  this.xpos = tempX;
+		  this.ypos = tempY;
+		  this.angle = random(0, TWO_PI);
+		  this.botImage = img;
+		  this.yoffset = 0.0;
+		  this.s = random(10, 100);
+		  this.tintValue = 122;
+
+		 // Update the properties
+		  this.update = function() {
+			this.angle += 0.05;
+			this.yoffset = sin(this.angle) * 40;
+			this.ypos ++;
+		  }
+
+		  // Draw the robot to the screen
+		  this.display = function() {
+			image(this.botImage, this.xpos, this.ypos + this.yoffset, this.s, this.s);
+			//this.s --;
+		  }
+		}
+	</script>
+</head>
+
+<body>
+</body>
+</html>

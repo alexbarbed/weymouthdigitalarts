@@ -1,0 +1,38 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script language="javascript" type="text/javascript" src="../libraries/p5.js"></script>
+</head>
+
+<body>
+<script>
+	
+	var angle = 0;
+	var vertical_offset = 400;
+	var wave_height = 40;
+	var wave_width = 80;
+	var wave_grains = 2;
+	var x = 0;
+	var y;
+	
+	function setup() {
+		canvas = createCanvas(window.innerWidth, window.innerHeight);
+		noStroke();
+		fill(0);
+		//frameRate(5);
+	}
+
+	function draw() {
+		x += wave_grains;
+		y = vertical_offset + (sin(angle) * wave_height);
+		angle += PI/wave_width;
+		rect(x, y, 2, 4);
+		
+		if (x > width){
+			vertical_offset += 50;
+			x = 0;
+			}
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+body {
+	padding: 0; 
+	margin: 0;
+	background-color: rgb(242, 225, 173);
+	} 
+	
+@font-face 
+	{
+    font-family: "Matrix Header";
+    src: url("assets/roboto/Roboto-Light.ttf");
+	}
+
+a:link
+	{
+	font-family: "Matrix Header";
+	font-size: 40;
+	color: #000000;
+	text-decoration: none;
+	}
+	
+a:hover
+	{
+	color: red;
+	}
+	
+a:visited
+	{
+	color: rgb(90,90,90);
+	}
+	

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Masking</title>
+    <script src="../libraries/p5.js" type="text/javascript"></script>
+  </head>
+  <body>
+	<script>
+	 
+	function preload() {
+	  img1 = loadImage("assets/dog.jpg");
+	  img2 = loadImage("assets/trees.png");
+		text_content = "";
+	}
+	 
+	function setup() {
+	  createCanvas(1920, 1080);
+		textSize(100);
+	}
+	 
+	function draw() {
+	  image(img2,0,0);
+		if (millis() > 25000){
+			blend(img1, 0, 0, 615, 439, 0, 0, 1920, 1080, LIGHTEST);
+			text_content = "LIGHTEST";
+		}else
+		if (millis() > 23000){
+			blend(img1, 0, 0, 615, 439, 0, 0, 1920, 1080, DARKEST);
+			text_content = "DARKEST";
+		}else
+		if (millis() > 21000){
+			blend(img1, 0, 0, 615, 439, 0, 0, 1920, 1080, DIFFERENCE);
+			text_content = "DIFFERENCE";
+		}else
+		if (millis() > 19000){
+			blend(img1, 0, 0, 615, 439, 0, 0, 1920, 1080, MULTIPLY);
+			text_content = "MULTIPLY";
+		}else
+		if (millis() > 17000){
+			blend(img1, 0, 0, 615, 439, 0, 0, 1920, 1080, EXCLUSION);
+			text_content = "EXCLUSION";
+		}else
+		if (millis() > 15000){
+			blend(img1, 0, 0, 615, 439, 0, 0, 1920, 1080, SCREEN);
+			text_content = "SCREEN";
+		}else
+		if (millis() > 13000){
+			blend(img1, 0, 0, 615, 439, 0, 0, 1920, 1080, OVERLAY);
+			text_content = "OVERLAY";
+		}else
+		if (millis() > 11000){
+			blend(img1, 0, 0, 615, 439, 0, 0, 1920, 1080, HARD_LIGHT);
+			text_content = "HARD_LIGHT";
+		}else
+		if (millis() > 9000){
+			blend(img1, 0, 0, 615, 439, 0, 0, 1920, 1080, SOFT_LIGHT);
+			text_content = "SOFT_LIGHT";
+		}else
+		if (millis() > 7000){
+			blend(img1, 0, 0, 615, 439, 0, 0, 1920, 1080, DODGE);
+			text_content = "DODGE";
+		}else
+		if (millis() > 5000){
+			blend(img1, 0, 0, 615, 439, 0, 0, 1920, 1080, BURN);
+			text_content = "BURN";
+		}else
+		if (millis() > 3000){
+			blend(img1, 0, 0, 615, 439, 0, 0, 1920, 1080, ADD);
+			text_content = "ADD";
+		}else{
+			blend(img1, 0, 0, 615, 439, 0, 0, 1920, 1080, NORMAL);
+			text_content = "NORMAL";
+		}
+		
+		text(text_content, 50, 100);
+		
+	}
+</script>
+  </body>
+</html>

@@ -1,0 +1,86 @@
+html,body {padding:0; margin:0;}
+
+a, a.link, a.visited {
+    color: #666 !important;
+    text-decoration: none !important;
+}
+
+.col-md-2 > h2 > a:hover {
+    color: white !important;
+    text-shadow: 0px 0px 10px #666;
+}
+
+.col-xs-12 > h2 > a:hover {
+    color: white !important;
+    text-shadow: 0px 0px 10px #666;
+}
+
+body  {
+    /*background-image: url("assets/bg_line.png");*/
+    /*background-color: #cccccc;*/
+    /*background-attachment: fixed;*/
+}
+h1 {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: 600;
+	line-height: 60px;
+}
+
+h2 {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: 600;
+	line-height: 60px;
+    text-shadow: 0px 0px 10px #999;
+}
+
+h1.mainpage {
+    font-size: 200px;
+    font-size: 16vw;
+    color: #f25a49;
+    opacity: 0.5;
+    text-shadow: 0px 0px 40px #f00000;
+}
+/*p {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 24px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+}*/
+div.titlebar {
+    background-color: rgba(122, 122, 122, .5);
+    border="none";
+}
+p.titlebar{
+    font-size: 5vw;
+	font-weight: 700;
+    text-align: center;
+}
+
+.jumbotron {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  background-color: white;
+  color: #666;
+  text-shadow: 0px 0px 10px #999;
+}
+
+
+div.no-margins {
+    margin-left: -15px;
+    margin-right: 55px;
+}
+
+div.fade-down {
+    background: red; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(white, grey); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(white, grey); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(white, grey); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(white, grey); /* Standard syntax (must be last) */
+}
+.container-fluid {
+    height: 100%;
+    max-width: 75%;
+    /*background-color: lightpink*/
+}

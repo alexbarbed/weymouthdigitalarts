@@ -1,0 +1,88 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--iphone stuff-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+  <style> body {padding: 0; margin: 0} </style> <!-- this line removes any default padding -->
+  <!-- P5 JavaScript library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/p5.min.js"></script>
+ 
+  <script>
+  
+		var list_of_blocks = [];  // Declare array to hold Blocks objects
+		var img;
+		var block_size = 50;
+		var display_counter = 0;
+
+		function preload() {
+			img = loadImage("assets/malevich_crop.jpg");
+			img_under = loadImage("assets/malevich_crop_invert.jpg");
+			img.loadPixels();
+		}
+
+		function setup() {
+		  createCanvas(window.innerWidth, window.innerHeight);
+			image(img,0,0);
+			for (var x = 0; x < img.width; x += block_size) {
+				for (var y = 0; y < img.height; y += block_size){
+					list_of_blocks.push(new Block(x,y));
+					display_counter ++;
+				}
+		  }
+			list_of_blocks.reverse(); // prevents objects being drawn behind original
+		}
+
+		function draw() {
+		  //background(0,0,0);
+			image(img_under,0,0);
+		  noStroke();
+			display_counter = 0;
+		  for (var x = 0; x < img.width; x += block_size) {
+				for (var y = 0; y < img.height; y += block_size){
+					list_of_blocks[display_counter].display();
+					list_of_blocks[display_counter].interact();
+					display_counter ++;
+				}
+		  }
+		}
+
+		function Block(tempX, tempY) {
+		  //constructor
+		  this.xpos = tempX;		
+		  this.ypos = tempY;
+		  this.w = block_size;
+		  this.h = block_size;
+			this.x_movement = 0;
+			this.y_movement = 0;
+			this.pic = get(this.xpos, this.ypos, this.w, this.h);
+			this.touched = false;
+		  
+		  // show object every frame
+		  this.display = function() {
+				if (this.x_movement > 0){this.x_movement -=0.5;}
+				if (this.y_movement > 0){this.y_movement -=0.5;}
+				if (this.x_movement < 0){this.x_movement +=0.5;}
+				if (this.y_movement < 0){this.y_movement +=0.5;}
+				this.xpos += this.x_movement;
+				this.ypos += this.y_movement;
+				image(this.pic,this.xpos,this.ypos);
+		  }
+			
+			this.interact = function(){
+				if (mouseX > this.xpos && mouseX < this.xpos+this.w && mouseY > this.ypos && mouseY < this.ypos+this.h){
+					if (this.touched == false){
+						//this.touched = true;
+						this.x_movement = floor(random(-5,5));
+						this.y_movement = floor(random(-5,5));
+					}
+					
+				}
+			}
+		}
+	
+	</script>
+</head>
+
+<body>
+</body>
+</html>

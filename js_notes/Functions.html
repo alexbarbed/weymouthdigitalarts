@@ -1,0 +1,126 @@
+<html><head></head><body><pre>
+<h1 style='color:grey;'>Functions</h1 style='color:black;'>
+<ul>
+  <li>Functions are objects </li>
+  <li>Functions can be stored in variables, objects and arrays</li>
+  <li>Functions can be passed as arguments to functions</li>
+  <li>Functions can be returned from functions</li>
+  <li>Functions can have methods, which are nested functions</li>
+</ul>
+	var add = function (a, b){
+		return a+b;
+	};
+	
+Functions are created with object literals. These have four parts:
+<ol>
+  <li>reserved word: <i>function</i></li>
+  <li>the optional function name (used for identification, debugging, calling recursively). If no name, it's an <i>anonymous</i> function.</li>
+  <li></li>zero or more parameters in parentheses, which are initialised by the supplied arguments when the function is invoked
+  <li></li>the body of the function: statements wrapped in curly braces that execute when the function is invoked.
+</ol>
+<h1>Scope and Closure</h1>
+Functions can be defined inside other functions. Inner functions can freely access the parameters and variables it is nested within. 
+Outer functions can't access variables declared in the inner ones, though. 
+This is called <i>Closure</i>.
+
+<h1>Creating a function</h1>
+	var add = function(a,b){
+		return a+b;
+	};
+	
+	var result = add(5,6);
+	document.writeln(result);
+output:<p style='color:blue;'><script>
+	var add = function(a,b){
+	return a+b;
+};
+var result = add(5,6);
+document.writeln(result);
+</script><p style='color:black'>
+
+</script><p style='color:black'>
+<h1>The Four Invocation Patterns</h1>
+In addition to the declared parameters, every function gets two extra: this, and arguments. How <i>this</i> is treated depends on the pattern of invocation used. 
+<ul>
+  <li>The Function Invocation Pattern</li>
+  <li>The Method Invocation Pattern </li>
+  <li>The Constructor Invocation Pattern</li>
+  <li>The Apply Invocation Pattern</li>
+</ul>
+<b>Refer to the book about these, I'm tired.</b>
+<h1>Callbacks</h1>
+Callback functions are used when you want to respond to an event at some unpredictable time. You are setting up a function that 
+will trigger when the event is received. 
+<!--
+<h1>Cascade</h1>
+I don't understand this AT ALL. I think the example is meant to be taken as a loose example but I can't see how to implement it...
+Let's make an id for a green box. 
+<style>
+#greenOne {
+    background-color: Olive;
+    width: 500px;
+	border: 15px;
+	border-style: solid;
+	border-color: Green;
+    padding: 15;
+    margin: 15px;}
+</style>
+<div id="greenOne"> <h2>Hello World</h2></div>
+<script>
+	function testChange(){
+		getElementById('greenOne')
+		.move(350, 150)
+		.width(100)
+		.height(100)
+		.color('red')
+		.border('10px outset')
+		.padding('4px')
+		.appendText('Please stand by')
+		.on('mousedown', function(m){
+			this.startDrag(m, this.getNinth(m))
+		})
+		.on('mousemove', 'drag')
+		.on('mouseup', 'stopDrag')
+		.later(2000, function(){
+			this
+				.color('yellow')
+				.setHTML("What hath God wraught?")
+				.slide(400, 40, 200, 200);
+		})
+		tip('This box is resizable');
+		
+	};
+</script>
+
+
+
+
+
+<p style='color:blue;'><script>
+	var trifle = function(b){
+		fruit = true;
+		sponge = true;
+		jelly = true;
+		sherry = this.test();
+		this.test: function () {
+			if (b == true){
+				sherry = true;
+				}
+			else{
+				sherry = false;
+				}
+		};
+		return sherry;
+	};
+	document.writeln("The alcoholic trifle has sherry in it: " + trifle(true));
+	document.writeln("The non-alcoholic trifle has sherry in it: " + trifle(false));
+</script><p style='color:black'>
+-->
+
+
+
+</pre></body></html>
+
+
+
+

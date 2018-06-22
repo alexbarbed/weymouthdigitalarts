@@ -1,0 +1,49 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--iphone stuff-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+ <meta name="apple-mobile-web-app-capable" content="yes" />
+ <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+ <meta name="HandheldFriendly" content="true" />		
+ <meta name="mobile-web-app-capable" content="yes" />
+  <style> body {padding: 0; margin: 0} </style> <!-- this line removes any default padding -->
+  <script language="javascript" type="text/javascript" src="../libraries/p5.js"></script> 
+  <!-- uncomment lines below to include extra p5 libraries -->
+  <script language="javascript" src="../libraries/p5.dom.js"></script>
+  <!--<script language="javascript" src="libraries/p5.sound.js"></script>-->
+ 
+  <script>
+
+	var c; 
+	
+	function preload(){
+	img = loadImage('assets/dog.jpg');
+	}
+	
+
+	function setup(){
+		createCanvas(900, 700);
+		noStroke();
+		img.loadPixels();
+	
+	}
+
+	function draw(){
+		//background(242, 225, 173);
+		//tint(255,20);
+		image(img, 0, 0);
+		c = img.get(mouseX, mouseY);
+		fill(c);
+		rect(0, 0, 100, 100);
+		//set(10, 10, c);
+		//updatePixels();
+	}
+
+  </script>
+
+</head>
+
+<body>
+</body>
+</html>

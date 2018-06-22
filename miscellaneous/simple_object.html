@@ -1,0 +1,60 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style> body {padding: 0; margin: 0} </style> <!-- this line removes any default padding -->
+  <script language="javascript" type="text/javascript" src="../libraries/p5.js"></script> 
+
+  <script>
+
+		function preload() {}
+
+		function setup() {
+		  createCanvas(window.innerWidth, window.innerHeight);
+			noStroke();
+			block1 = new Block();
+		}
+
+		function draw() {
+		  background(255,255,255);
+		  block1.update();
+			block1.display();
+		}
+
+		function Block(tempX, tempY) {
+		  //constructor
+		  this.xpos = random(-40, width-40);		
+		  this.ypos = random(-40, height-40);
+		  this.w = 50;
+		  this.h = 50;
+		  this.y_direction = 'none';
+		  this.blockColour = random(0,255);
+		  this.speed = random(0.2, 5.0);
+
+		  //update object every frame
+		  this.update = function() {
+				this.xpos += this.speed;
+				if (this.xpos > width){
+					this.xpos = -50;
+				}
+				if (this.direction == 'up'){this.ypos--;}
+				if (this.direction == 'down'){this.ypos++;}
+		
+				if (mouseY < this.ypos){
+					this.direction = 'down';
+					} else {
+					this.direction = 'up';
+				} 
+		  }
+		  
+		  // show object every frame
+		  this.display = function() {
+				fill(this.blockColour);
+				rect(this.xpos, this.ypos, this.w, this.h);
+		  }
+		}
+	</script>
+</head>
+
+<body>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Masking</title>
+    <script src="../libraries/p5.js" type="text/javascript"></script>
+  </head>
+  <body>
+	<script>
+	
+	var angle = 0;
+	 
+	function preload() {
+	  img1 = loadImage("assets/trees.png");
+	  img2 = loadImage("assets/tranparent_frame.png");
+		text_content = "ALPHA";
+	}
+	 
+	function setup() {
+	  createCanvas(1920, 1080);
+		textSize(100);
+	}
+	 
+	function draw() {
+	  image(img1,0,0);
+	  push();
+	  rotate(angle);
+	  angle+= 0.01;
+	  image(img2,width/2,height/2);
+	  pop();
+	  text(text_content, 50, 100);
+	  
+		
+	}
+</script>
+  </body>
+</html>

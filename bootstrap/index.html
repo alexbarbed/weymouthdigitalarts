@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<div class="container-fluid">
+		<h1>My First Bootstrap Page <small>Hi, it's me, <abbr title="Interesting Thing Here">ITH</abbr></small></h1>
+		<p>I am at the top of a <mark>fluid</mark> container.</p> 
+		Here is a quote from another source using blockquote and footer It could right aligned using blockquote-reverse.</p>
+		<blockquote>
+			<p>Arctic sea ice over the past five years is 28% below the average of the previous 29 years, not only raising sea levels, but also reducing the cooling effect of polar ice reflection of solar rays, thereby accelerating the grim effects of global warming.</p>
+			<footer>http://fusion.net/story/370387/chomsky-on-trumps-election-and-climate/</footer>
+		</blockquote>
+		<p>The dl element indicates a description list:</p>
+		<dl>
+			<dt>Good Things</dt>
+			<dd>pizza</dd>
+			<dd>monkeys</dd>
+			<dt>Bad Things</dt>
+			<dd>wasps</dd>
+			<dd>blocked drains</dd>
+		</dl> 
+		<h2>Here are some columns. <small>You can have up to 12, or any division of 12.</small></h2>
+		<div class="row">
+			<div class="col-sm-4">left column</div>
+			<div class="col-sm-4">middle column</div>
+			<div class="col-sm-4">right column</div>
+		</div>
+		<h2>Showing code snippets</h2>
+		<p>You can use the code tag to depict HTML snippets of code. It just does formatting, nothing else:</p>
+		<p>You can use <code>h1</code>to define a heading.</p>
+		<p>I like this one: to show keyboard shortcuts, use the kbd tag, like this: <kbd>alt-shift-z</kbd></p>
+		<p>There are various contextualised colour tags, </p>
+		<p class="text-success">like this one which is supposed to indicate success.</p>
+		<p class="bg-success">Or this background one, which also indicates success :)</p>
+		<p>There are <strong>load</strong> of other typography tools for alignment and display, <a href=https://www.w3schools.com/bootstrap/bootstrap_ref_css_text.asp>here</a>.</p>
+		<p>Here is a picture:</p>
+		<img src="assets/peeps.jpg" alt="2 Peeps" width="473" height="355">
+		<p>Here is a picture with rounded corners:</p>
+		<img src="assets/peeps.jpg" class="img-rounded" alt="2 Peeps" width="473" height="355">
+		<p>Here is a picture in a circle:</p>
+		<img src="assets/peeps.jpg" class="img-circle" alt="2 Peeps" width="473" height="355">
+		<p>Here is a scaled picture which should scale with the page nicely:</p>
+		<img src="assets/peeps.jpg" class="img-responsive" alt="2 Peeps" width="473" height="355"> 
+		<p>Here is a regular picture which should scale nicely:</p>
+		<img src="assets/peeps.jpg" class="img-responsive" alt="2 Peeps"> 
+		<p>And if you want to make a gallery, bootstrap has classes for thumbnails with captions...</p>
+		<div class="row">
+			<div class="col-md-4">
+				<div class="thumbnail">
+					<a href="/w3images/lights.jpg">
+						<img src="assets/peeps.jpg" alt="2 Peeps" style="width:100%">
+						<div class="caption">
+							<p>Peeps Image 1</p>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="thumbnail">
+					<a href="/w3images/nature.jpg">
+						<img src="assets/peeps.jpg" alt="2 Peeps" style="width:100%">
+						<div class="caption">
+							<p>Peeps Image 2</p>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="thumbnail">
+					<a href="/w3images/fjords.jpg">
+						<img src="assets/peeps.jpg" alt="2 Peeps" style="width:100%">
+						<div class="caption">
+							<p>Peeps Image 3</p>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+		<p>And it can scale embedded video easy as chips:</p>
+		<h2>Responsive Embed</h2>
+		<p>Create a responsive video and scale it nicely to the parent element with an 16:9 aspect ratio</p>
+		
+		<div class="embed-responsive embed-responsive-4by3">
+			<iframe class="embed-responsive-item"src="https://www.youtube.com/embed/N8bjJf3Q5mE?list=RDN8bjJf3Q5mE"></iframe>
+		</div>
+	</div>
+
+</body>
+</html>

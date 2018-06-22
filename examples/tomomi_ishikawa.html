@@ -1,0 +1,75 @@
+<!--tomomi ishikawa - "Poster" adapted for P5 http://www.openprocessing.org/sketch/119433-->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--iphone stuff-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+ <meta name="apple-mobile-web-app-capable" content="yes" />
+ <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+ <meta name="HandheldFriendly" content="true" />		
+ <meta name="mobile-web-app-capable" content="yes" />
+ <style> body {padding: 0; margin: 0} </style> <!-- this line removes any default padding -->
+ <script language="javascript" type="text/javascript" src="../libraries/p5.js"></script>
+  <!-- uncomment lines below to include extra p5 libraries -->
+  <!--<script language="javascript" src="libraries/p5.dom.js"></script>-->
+  <!--<script language="javascript" src="libraries/p5.sound.js"></script>-->
+  <!-- this line removes any default padding and style. you might only need one of these values set. -->
+ <link rel="stylesheet" type="text/css" href="../../style.css">
+</head>
+
+<body>
+<script>
+	function setup(){
+		createCanvas(400,565);
+		background(232,255,196);
+		smooth();
+		 
+		//kurozi
+		fill(0);
+		rect(260,0,260,565);
+		rect(0,380,400,400);
+		rect(135,280,400,400);
+		 
+		//sirozi
+		stroke(232,255,196);
+		strokeWeight(2);
+		line(0,400,400,400);
+		line(260,0,260,565);
+		 
+		noStroke();
+		fill(232,255,196);
+		rect(265,100,300,235);
+		rect(170,360,300,90);
+		 
+		ellipse(125,500,180,180);
+		 
+		//line
+		var i = 0;
+		stroke(0);
+		for(var x=0; x<400; x+=100){
+			for(var y=0; y<565; y+=5){
+			line(x++,y,-1000,600);
+		}
+		}
+		 
+		strokeWeight(1);
+		for(var x=0; x<=width; x+=20){
+			for(var y=0; y<=height; y+=20){
+			if(x == 100 || x == 300){
+				fill(232,255,196);
+			}
+			else{
+				fill(0);
+			}
+			ellipse(x,130,10,10);
+			println("x=" + x);
+			}
+		}
+		//aka
+		noStroke();
+		fill(255,0,0);
+		triangle(20,100,100,40,370,520);
+	}
+	function create(){}
+</script>
+</html>

@@ -1,0 +1,81 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--iphone stuff-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+ <meta name="apple-mobile-web-app-capable" content="yes" />
+ <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+ <meta name="HandheldFriendly" content="true" />		
+ <meta name="mobile-web-app-capable" content="yes" />
+  <style> body {padding: 0; margin: 0} </style> <!-- this line removes any default padding -->
+  <script language="javascript" type="text/javascript" src="../libraries/p5.js"></script> 
+  <!-- uncomment lines below to include extra p5 libraries -->
+  <script language="javascript" src="../libraries/p5.dom.js"></script>
+  <!--<script language="javascript" src="libraries/p5.sound.js"></script>-->
+ 
+  <script>
+
+  var malpal;
+
+  function setup(){
+	createCanvas(900, 900);
+	frameRate(5);
+	noStroke();
+	ellipseMode(CENTER);
+	
+	malpal = new MalevichPalette();
+	
+}
+
+function draw(){
+	background(242, 225, 173);
+	for (i=25; i<width; i+=50){
+		for (j=25; j<height; j+=50){
+			fill(pickRandomProperty(malpal));
+			ellipse(i+random(2), j+random(2), 50, 50)
+		}
+	}
+}
+
+function MalevichPalette(){
+	this.orange1 = color(223, 141, 6);
+	this.orange2 = color(225, 131, 9);
+	this.orange3 = color(199, 114, 5);
+	this.orange4 = color(210, 70, 8);
+	this.blue1 = color(123, 146, 138);
+	this.bluegrey = color(124, 135, 118);
+	this.grey1 = color(128, 96, 71);
+	this.grey2 = color(200, 193, 141);
+	this.grey3 = (158, 165, 121);
+	this.grey4 = color(180, 179, 123);
+	this.grey5 = color(227, 211, 151);
+	this.brickred = color(162, 43, 3);
+	this.beige = color(236, 182, 112);
+	this.black1 = color(19, 20, 14);
+	this.black2 = color(13, 14, 8);
+	this.black3 = color(21, 33, 0);
+	this.black4 = color(11, 12, 4);
+	this.black5 = color(88, 72, 56);
+	this.brown1 = color(128, 74, 4);
+	this.red1 = color(187, 38, 6);
+}
+
+function pickRandomProperty(obj) {
+    var keys = [];
+    for (var prop in obj){
+        if (obj.hasOwnProperty(prop)) {
+           keys.push(prop);
+		}
+	}
+	temp = keys[keys.length * Math.random() << 0 ];
+	result = obj[temp];
+    return result;
+}
+
+  </script>
+
+</head>
+
+<body>
+</body>
+</html>

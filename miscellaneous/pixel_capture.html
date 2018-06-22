@@ -1,0 +1,35 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script language="javascript" type="text/javascript" src="../libraries/p5.js"></script>
+</head>
+
+<body>
+<script>
+
+    var img;
+
+    function preload() {
+      img = loadImage("assets/malevich_crop.jpg");
+    }
+
+    function setup() {
+      createCanvas(460, 637);
+      noStroke();
+      background(255,122,122);
+			//capture array of colours from image
+      img.loadPixels();
+    }
+
+    function draw() {
+			//set pixel_colour to whatever is at the mouse position
+      var pixel_colour = img.get(mouseX, mouseY);
+			//set paint colour to pixel_colour
+      fill(pixel_colour);
+			//draw box
+      rect(mouseX, mouseY, 10, 10);
+}
+</script>
+</body>
+</html>
+

@@ -1,0 +1,116 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style> body {padding: 0; margin: 0} </style> <!-- this line removes any default padding -->
+  <script language="javascript" type="text/javascript" src="../libraries/p5.js"></script>
+ 
+  <script>
+
+		var list_of_blocks = [];  // Declare array to hold Blocks objects
+		var img;
+		
+		function preload() {
+			img1 = loadImage("assets/malevich_suprematism.jpg");
+			img2 = loadImage("assets/beat_the_whites.jpg");
+			img3 = loadImage("assets/destijl.jpg");
+			img4 = loadImage("assets/title.png");
+		}
+
+		function setup() {
+			createCanvas(700, 700);
+			img1.loadPixels();
+			img2.loadPixels();
+			img3.loadPixels();
+			img4.loadPixels();
+			var numBlocks = 800;
+
+			for (var i = 0; i < numBlocks; i++) {
+				list_of_blocks.push(new Block());
+				}
+			}
+
+		function draw() {
+			//background(120);
+			noStroke();
+			for (var i = 0; i < list_of_blocks.length; i++) {
+				list_of_blocks[i].update();
+			}
+			 //only undelete if you are sure!
+			 //save("frame-"+frameCount+".png");
+		}
+
+		function Block() {
+			//constructor
+			this.xpos = random(-40, width-40);                        
+			this.ypos = random(-40, height-40);
+			this.w = random(2,8);
+			this.h = random(2,8);
+			this.direction = 'none';
+			this.speed = random(0.2, 25.0);
+			this.my_colour = (0,0,0,0);
+
+			//update object every frame
+			this.update = function() {
+				if (millis() > 56000) {
+					this.run_paint();} 
+				else if (millis() > 48000) {
+					img = img4;
+					this.paint();} 
+				else if (millis() > 40000) {
+					this.run_paint();} 
+				else if (millis() > 32000) {
+					img = img3;
+					this.paint();} 
+				else if (millis() > 24000) {
+					this.run_paint();} 
+				else if (millis() > 16000) {
+					img = img2;
+					this.paint();} 
+				else if (millis() > 8000) {
+					this.run_paint();}
+				else {
+					img = img1;
+					this.paint();}
+			}
+			
+			this.paint = function(){
+				//move right
+				this.xpos += this.speed;
+				//reset position if off screen
+				if (this.xpos > width-50){
+					this.xpos = -50;
+					this.ypos = random(height);
+				}
+				//set colour to corresponding pixel in picture
+				this.my_colour = img.get(this.xpos, this.ypos);
+				//draw the box
+				this.draw_me();
+			}
+			
+			this.run_paint = function(){
+				//make it run down the screen
+				this.ypos += this.speed;
+				//draw the box
+				this.draw_me();
+			}
+			
+			this.draw_me = function() {
+				//draw the box
+				fill(this.my_colour);
+				rect(this.xpos, this.ypos, this.w, this.h);
+			}
+			
+		}
+	 
+	 
+		function keyPressed() {
+		 if (key == 'S') {
+				saveCanvas('myCanvas', 'jpg');
+		 }
+		}
+</script>
+</head>
+ 
+<body>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--iphone stuff-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+  <style> body {padding: 0; margin: 0} </style> <!-- this line removes any default padding -->
+  <!-- P5 JavaScript library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/p5.min.js"></script>
+ 
+  <script>
+  
+	var x = 0;
+	var y = 0;
+	var px = 0;
+	var py = 0;
+	var easing = 0.05;
+	var my_red = 120; var my_green = 60; var my_blue = 30;
+
+	function setup() {
+	  createCanvas(windowWidth, windowHeight);
+	  background(my_red, my_green, my_blue);
+		stroke(my_red/2, my_green/2, my_blue/2);
+		noFill();
+		text("CLICK TO DRAW", 20, 20);
+	  stroke(255);
+		
+	}
+
+	function draw() {
+		
+	   if(mouseIsPressed){
+			var targetX = mouseX;
+			x += (targetX - x) * easing;
+			var targetY = mouseY;
+			y += (targetY - y) * easing;
+        
+			for (i=0;i<250;i++){
+				stroke(255-i);
+				point(x*sin(i), y);
+			}
+			
+			py = y;
+			px = x;
+		}else{y = py = mouseY;x = px=mouseX;}
+	}
+      
+    function touchMoved(){
+        if(touchMoved){
+            var targetX = mouseX;
+			x += (targetX - x) * easing;
+			var targetY = mouseY;
+			y += (targetY - y) * easing;
+        
+			for (i=0;i<250;i++){
+				stroke(255-i);
+				point(x*sin(i), y);
+			}
+			
+			py = y;
+			px = x;
+        } 
+        return false;
+    }
+    function windowResized() {
+        resizeCanvas((window.innerWidth), window.innerHeight);
+        background(my_red, my_green, my_blue);
+        stroke(my_red/2, my_green/2, my_blue/2);
+        noFill();
+        text("CLICK TO DRAW", 20, 20);
+        stroke(255);
+    }
+  
+
+	
+</script>
+
+</head>
+
+<body>
+</body>
+</html>

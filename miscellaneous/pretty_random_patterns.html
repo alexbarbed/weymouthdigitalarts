@@ -1,0 +1,45 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--iphone stuff-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+  <style> body {padding: 0; margin: 0} </style> <!-- this line removes any default padding -->
+  <!-- P5 JavaScript library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/p5.min.js"></script>
+ 
+  <script>
+  
+	
+
+		function setup() {
+		createCanvas(windowWidth, windowHeight);
+        background('pink');
+		}
+
+		function draw() {
+			noStroke();
+			fill(random(255),random(255),random(255),122);
+			if (mouseIsPressed){
+				ellipse(mouseX,mouseY,random(100),random(100));
+			}
+		}
+      
+      function touchMoved(){
+        if(touchMoved){
+            fill(random(255),random(255),random(255),122);
+			ellipse(mouseX,mouseY,random(100),random(100));
+        } 
+        return false;
+    }
+    function windowResized() {
+        resizeCanvas((window.innerWidth), window.innerHeight);
+        createCanvas(windowWidth, windowHeight);
+        background('pink');
+    }
+
+	</script>
+</head>
+
+<body>
+</body>
+</html>

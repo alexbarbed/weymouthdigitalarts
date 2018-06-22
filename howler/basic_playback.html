@@ -1,0 +1,83 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--iphone stuff-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+ <meta name="apple-mobile-web-app-capable" content="yes" />
+ <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+ <meta name="HandheldFriendly" content="true" />		
+ <meta name="mobile-web-app-capable" content="yes" />
+  <style> body {padding: 0; margin: 0} </style> <!-- this line removes any default padding -->
+  <script language="javascript" type="text/javascript" src="../libraries/p5.js"></script> 
+  <!-- uncomment lines below to include extra p5 libraries -->
+  <script language="javascript" src="../libraries/p5.dom.js"></script>
+  <!--<script language="javascript" src="libraries/p5.sound.js"></script>-->
+  
+  <script language="javascript" src="../libraries/howler.js"></script>
+  
+  
+  <script>
+  
+  var buttonX = 10;
+  var buttonY = 10;
+  var buttonWH = 50;
+  var myMouseDown = false;
+  var s1;
+  var buttonRed = 210;
+  var buttonGreen = 255;
+  var buttonBlue = 125;
+  
+  function setup(){
+	createCanvas(900, 900);
+	noStroke();
+	ellipseMode(CORNER);
+	s1 = new Howl({
+		src: ['sounds/riser.wav']
+	});
+
+}
+
+function draw(){
+	background(242, 225, 173);
+	fill(buttonRed, buttonGreen, buttonBlue);
+	ellipse(buttonX, buttonY, buttonWH, buttonWH)
+	uniqueMouseClickOnButton();
+	fill(44, 44, 44);
+	text('click green button for sound', buttonX + buttonWH + 20, buttonY + buttonWH/2);
+	}
+	
+function uniqueMouseClickOnButton(){
+
+	// uses a global variable, myMouseDown, to keep track of unique mouse presses.
+	// this is to avoid millions of events triggering while the button is held down.
+	// the first time the button is clicked on the button, it can trigger an event. 
+	// another event can't be triggered until the mouse is released.
+	// this relies on mouseReleased function resetting the myMouseDown variable.
+	
+	if(myMouseDown == false){
+		// check if mouse in range
+		if (mouseX > buttonX && mouseX < buttonX + buttonWH && mouseY > buttonY && mouseY < buttonY + buttonWH){
+			buttonGreen = 0; // mouseover colour
+			// check if mouse is pressed
+			if (mouseIsPressed){
+				myMouseDown = true;
+				//console.log('mouse pressed');
+				
+				// EVENT TO TRIGGER GOES HERE:
+				s1.play();
+				
+			}
+		}else{buttonGreen = 255;} //mouseout colour
+	}
+}
+
+function mouseReleased(){
+	myMouseDown = false;
+	}
+  </script>
+
+</head>
+
+<body>
+</body>
+</html>

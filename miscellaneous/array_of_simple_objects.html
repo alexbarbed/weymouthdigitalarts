@@ -1,0 +1,88 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+  <style> body {padding: 0; margin: 0} </style> <!-- this line removes any default padding -->
+  <!-- P5 JavaScript library -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/p5.min.js"></script>
+ 
+
+  <script>
+  
+		var list_of_blocks = [];  // Declare array to hold Blocks objects
+        var blue_value = 0;
+        var limit = 'bottom';
+
+		function preload() {}
+
+		function setup() {
+		  createCanvas(window.innerWidth, window.innerHeight);
+
+		  var numBlocks = 100;
+
+		  for (var i = 0; i < numBlocks; i++) {
+			list_of_blocks.push(new Block());
+		  }
+		}
+
+		function draw() {
+		  background(0,122,blue_value);
+          if (blue_value == 255){limit = 'top'}
+          if (blue_value == 0){limit = 'bottom'}
+          if (limit == 'bottom') {blue_value += 1;}else{blue_value -= 1}
+		  noStroke();
+		  for (var i = 0; i < list_of_blocks.length; i++) {
+				list_of_blocks[i].update();
+				list_of_blocks[i].display();
+		  }
+			//only undelete if you are sure!
+			//save("frame-"+frameCount+".png");
+		}
+
+		function Block(tempX, tempY) {
+		  //constructor
+		  this.xpos = random(-40, width-40);		
+		  this.ypos = random(-40, height-40);
+		  this.w = width/20;
+		  this.h = height/5;
+		  this.y_direction = 'none';
+		  this.blockColour = color(random(0,255),122, 122, random(0,255));
+		  this.speed = random(0.2, 5.0);
+          this.listen_to_mouse = true;
+
+		  //update object every frame
+		  this.update = function() {
+				this.xpos += this.speed;
+				if (this.xpos > width){
+					this.xpos = -50;
+			}
+			if (this.direction == 'up' && this.ypos >= 0){this.ypos--;}
+			if (this.direction == 'down' && this.ypos <= height-this.h){this.ypos++;}
+	
+            if (mouseX > this.xpos && mouseX < this.xpos+this.w && mouseY > this.ypos && mouseY < this.ypos+this.h){
+                if (this.direction == 'down'){
+                        this.direction = 'up'
+                    } else {this.direction = 'down'}
+            }
+		  }
+		  
+		  // show object every frame
+		  this.display = function() {
+				fill(this.blockColour);
+ 				rect(this.xpos, this.ypos, this.w, this.h);
+		  }
+		}
+      
+    function windowResized() {
+        resizeCanvas((window.innerWidth), window.innerHeight);
+        for (var i = 0; i < list_of_blocks.length; i++) {
+				list_of_blocks[i].w = width/20;
+				list_of_blocks[i].h = height/5;
+		  }
+    }
+	</script>
+</head>
+
+<body>
+</body>
+</html>

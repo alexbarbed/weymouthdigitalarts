@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vermeer</title>
+    <script src="../libraries/p5.js" type="text/javascript"></script>
+  </head>
+  <body>
+	<script>
+	
+		function preload(){
+			heading_font = loadFont("../assets/roboto/Roboto-Bold.ttf");
+			body_font = loadFont("../assets/roboto/Roboto-Light.ttf");
+			vermeer_image = loadImage("assets/Jan_Vermeer_van_Delft_014.jpg");
+			open_window_hunter = loadImage("assets/tom_hunter_woman.jpg");
+			open_window_vermeer = loadImage("assets/girl-reading-a-letter-at-an-open-window.jpg");
+		}
+		
+		function setup(){
+			createCanvas(1500,1350);
+		}
+		
+		function draw(){
+			background('#e1dbe7');
+			show_article();
+			fill(255,0,0, 22);
+			ellipse(width-75,height-75,100,100);
+		}
+		
+		function show_article(){
+			noStroke();
+			// heading text
+			textFont(heading_font);
+			textSize(48);
+			textAlign(LEFT, TOP);
+			fill(38);
+			text("Vermeer, The Music Lesson (1662-1665)", 20, 12);
+			
+			// draw image
+			image(vermeer_image,0,0,0,0,20,95,500,574);
+			
+			// reference text
+			textFont(body_font);
+			textSize(10);
+			text("Image source: https://upload.wikimedia.org/wikipedia/commons/4/49/Jan_Vermeer_van_Delft_014.jpg", 20,670);
+			
+			// left panel
+			fill(60);
+			textSize(19);
+			text("Jan Vermeer (1632-1675) was a Dutch painter famous for painting interior scenes, often with checkerboard floor tiles. The rooms he painted were the rooms of his own house. He only painted around 36 pictures, but all show amazing attention to detail in terms of composition, perspective and light.\n\nThis time period is associated with the Baroque period, but the subject matter and tone of Vermeer's paintings lack the passion and exhuberance associated with it. The Dutch Republic banned the Catholic religion in 1580, which may explain their more reserved nature. However, Vermeer married a Catholic and was exposed to Italian Baroque painting by his mother-in-law, who was an art collector. It could be argued that his paintings have the  sensuous nature of the Italian Baroque combined with the more formal and serious Protestant aesthetic of his homeland.\n\nThere is no clear 'moral' to this painting. Instead the moment is captured, leaving the viewer to construct a narrative around what might be unfolding.", 560, 85, 400);
+			
+			// right panel
+			text("Although the concept of the vanishing point had been around for nearly 200 years, Vermeer really played with it and produced images which were at once 'correct' and yet hard to fathom. In this example, the mirror above the girl's head seems to show more of her face than we expect. We then realise that it must be leaning out from the wall, and that the painting makes sense after all.\n\nSome studies have suggested that Vermeer used a camera obscura in the preparations for his paintings. An x-ray of this painting revealed that there is a black and white version of the composition beneath the colour one, adding credence to the idea. Perhaps he sketched in the original image projected from the device (which would have been very dark and colourless) and then painted the colour version on top, using the original as a guide. This could help to explain the almost photographic level of detail and the oddness of the reflected image in the mirror, which appears to show a section of the artist's easel in the background. ", 1020, 85, 400);
+			
+			// reference text
+			textFont(body_font);
+			textSize(10);
+			text("Historical Information: http://www.essentialvermeer.com\nInterpretation: http://www.artble.com/artists/johannes_vermeer/paintings/the_music_lesson \nInformation on camera obscura: http://www.grand-illusions.com/articles/mystery_in_the_mirror", 1020,670);
+			
+			// SUB-heading text
+			textFont(heading_font);
+			textSize(19);
+			fill(38);
+			text("Vermeer in Contemporary Culture", 20, 710);
+			
+			// lower panel
+			textSize(19);
+			textFont(body_font);
+			fill(60);
+			text("Vermeer continues to inspire artists today. His painting 'Girl with a Pearl Earring' inspired the best-selling 1999 novel by Tracy Chevalier, which went on to become a popular film starring Scarlett Johanssen. The films of Peter Greenaway often contain visual references to Vermeer's work, and he even composed a libretto for an opera entitiled 'Writing To Vermeer'.\n\nThe work of Tom Hunter makes use of Vermeer's interior composition techniques and his fascination with the effects of light. In his essay 'Under the Influence' he says 'The images I made took direct reference from Vermeer's compositions, from his use of light, colour and calm contemplation. From this understanding I composed and rendered my photographic work 'Woman Reading A Possession Order', which took as its starting point, Vermeer's 'A Girl Reading a Letter at an Open Window'. ", 20, 740, 500);
+			
+			// reference text
+			textFont(body_font);
+			textSize(10);
+			text("Tom Hunter: http://www.tomhunter.org/essay-under-the-influence", 20,1155);
+			
+			// draw image
+			image(open_window_hunter,0,0,0,0,560,740,400,508);
+			
+			// reference text
+			textFont(body_font);
+			textSize(10);
+			text("Source: http://www.saatchigallery.com/imgs/artists/hunter,%20tom/tom_hunter_woman.jpg", 560, 1250);
+			
+			// draw image
+			image(open_window_vermeer,0,0,0,0,1020,740,389,508);
+			
+			// reference text
+			textFont(body_font);
+			textSize(10);
+			text("Source: https://vermeer0708.files.wordpress.com/2009/02/xl_girl_reading_a_letter_at_an_open_window_.jpg", 1020, 1250);
+		}
+	</script>
+  </body>
+</html>

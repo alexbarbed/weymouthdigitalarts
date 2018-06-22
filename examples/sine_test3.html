@@ -1,0 +1,45 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script language="javascript" type="text/javascript" src="../libraries/p5.js"></script>
+</head>
+
+<body>
+<script>
+	
+	var angle = 0;
+	var horizontal_offset = 400;
+	var vertical_offset = 400;
+	var wave_height = 100;
+	var wave_width = 100;
+	var wave_grains = 2;
+	var x = 0;
+	var y;
+	
+	function setup() {
+		canvas = createCanvas(window.innerWidth, window.innerHeight);
+		noStroke();
+		fill(0);
+		//frameRate(5);
+	}
+
+	function draw() {
+		background(255);
+		x = horizontal_offset + cos(angle) * wave_width;
+		y = vertical_offset + (sin(angle) * wave_height);
+		angle += PI/wave_width;
+		
+		stroke(0, 0, 255);
+		rect(x, y, 8, 16); // blue circle
+		
+		stroke(255, 0, 0);
+		rect(horizontal_offset/2, y, 8, 16); // red sine wave value controls y
+		text(str(y), horizontal_offset/2, y);
+		
+		stroke(0, 255, 0);
+		rect(x, vertical_offset*1.5, 8, 16); // green cosine wave value controls x
+		text(str(x), x, vertical_offset*1.5);
+	}
+</script>
+</body>
+</html>

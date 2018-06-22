@@ -1,0 +1,31 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script language="javascript" type="text/javascript" src="../libraries/p5.js"></script>
+</head>
+
+<body>
+<script>
+
+    var img;
+
+    function preload() {
+      img = loadImage("assets/malevich_crop.jpg");
+	  overlay = loadImage("assets/blob.png");
+    }
+
+    function setup() {
+      createCanvas(460, 637);
+      noStroke();
+	  textSize(20);
+    }
+
+    function draw() {
+	  background(255);
+	  image(img,mouseX,mouseY,100,100,mouseX,mouseY,100,100)
+	  image(overlay,mouseX,mouseY)
+}
+</script>
+</body>
+</html>
+

@@ -1,0 +1,119 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--iphone stuff-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+ 
+  <style> body {padding: 0; margin: 0} </style> <!-- this line removes any default padding -->
+  <script language="javascript" type="text/javascript" src="../libraries/p5.js"></script> 
+  <!-- uncomment lines below to include extra p5 libraries -->
+  <script language="javascript" src="../libraries/p5.dom.js"></script>
+  <script language="javascript" src="../libraries/p5.sound.js"></script>
+ 
+  <script>
+  
+	var x = 0;
+	var y = 0;
+	var px = 0;
+	var py = 0;
+	var easing = 0.05;
+	var col = 0;
+	var osc;
+	var isPlaying = false;
+	var delay;
+	var ms; 
+	var e1 = e2 = e3 = e4 = e5 = e6 = false;
+	
+
+	function setup() {
+	  createCanvas(1400, 1000);
+	  background(43, 171, 226);
+	  stroke(255);
+	  
+	  ms = millis();
+	  
+	  osc = new p5.Oscillator();
+	  osc.setType('triangle');
+	  osc.amp(0);
+	  osc.start();
+	  
+	  delay = new p5.Delay();
+	  //source, time, fb, filter freq
+	  delay.process(osc, 0.5, .7, 1000);
+	  
+	  
+	}
+
+	function draw() {
+	  if(mouseIsPressed){
+		brushDown();	
+		playSound();
+		osc.freq(y);
+		
+	  }else{stopSound();}
+	  
+	  playSequence();
+	}
+	
+	function playSequence(){
+		if (true == false){}
+		else if (millis() > 10000 && e4 == false){
+				e4 = true;
+				console.log(millis());}
+		else if (millis() > 3000 && e3 == false){
+				e3 = true;
+				console.log(millis());}
+		else if (millis() > 2000 && e2 == false){
+				e2 = true;
+				console.log(millis());}
+		else if (millis() > 1000 && e1 == false){
+				e1 = true;
+				console.log(millis());}
+		}
+
+  
+	function brushDown(){
+	var targetX = mouseX;
+	  x += (targetX - x) * easing;
+	  var targetY = mouseY;
+	  y += (targetY - y) * easing;
+	  var weight = dist(x, y, px, py);
+	  strokeWeight(weight);
+	  
+	  stroke(col);
+	  line(x, y, px, py);
+	  py = y;
+	  px = x;
+	  
+	  if (col < 255){
+	  col++}else{col=0}
+	  
+	  
+	 }
+	 
+	function playSound(){
+		if (isPlaying == false){
+			isPlaying = true;
+			//
+			// ramp amplitude to 0.5 over 0.1 seconds
+			osc.amp(0.1, 0.05);
+			
+			
+		}
+	}
+
+	
+	function stopSound(){
+	// ramp amplitude to 0 over 0.5 seconds
+		isPlaying = false;
+		osc.amp(0, 0.05);
+	}
+	
+	
+</script>
+
+</head>
+
+<body>
+</body>
+</html>

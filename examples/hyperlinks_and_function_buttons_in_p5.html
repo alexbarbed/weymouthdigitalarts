@@ -1,0 +1,83 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="HandheldFriendly" content="true" />		
+  <meta name="mobile-web-app-capable" content="yes" />
+  <style> body {padding: 0; margin: 0} </style>
+  <script language="javascript" type="text/javascript" src="../libraries/p5.js"></script>
+  <script language="javascript" type="text/javascript" src="../libraries/p5.dom.js"></script>
+	<script language="javascript" type="text/javascript" src="../libraries/p5.utilities.js"></script>
+</head>
+
+<body>
+<script>
+	var canvas;
+	var background_colour;
+	var myLink;
+	var myLink_direction = 'right';
+	var text2;
+	var imagelink1;
+	var myImageButton;
+	var myImageButton2;
+	
+
+	function setup() {
+		canvas = createCanvas(window.innerWidth, window.innerHeight);
+		noStroke();
+		background_colour = color(242, 225, 173);	
+		myFont = loadFont("assets/ADAM.CG PRO.otf");
+
+		myLink = new Click_text(0,0,"Using Text in P5","vermeer.html");
+		myLink.width = 300;
+		myLink.height = 35;
+		myLink.text_size=45; 
+		myLink.text_font=myFont; 
+		myLink.text_colour=color(202, 175, 133); 
+		myLink.rollover_colour=color(222, 195, 153);
+		myLink.show_rect = false;
+		//myLink.func=change_backgroundcolour
+		
+		text2 = new Click_text(70,270,"Test Function");
+		text2.func = change_backgroundcolour;
+		
+		myImageButton = new Click_image(100, 300, 'assets/pic1.png', 'assets/pic2.png');
+		myImageButton.func=change_backgroundcolour
+		
+		myImageButton2 = new Click_image(100, 100, 'assets/pic1.png', 'assets/pic2.png', 'tomomi_ishikawa.html');
+	}
+
+	function draw() {
+		background(background_colour);
+		myLink.active();
+		moveLink();
+		myImageButton.active();
+		myImageButton2.active();
+		ellipse(50,50,50,50);
+		text2.active();
+	}
+
+	
+	function change_backgroundcolour (){
+		background(255,0,0);
+	}
+	
+	function moveLink(){
+		if (myLink_direction === 'right'){myLink.x ++;}
+		else if (myLink_direction === 'left'){myLink.x --;}
+		if (myLink.x > width -myLink.width){
+			myLink_direction = 'left';} 
+		else if (myLink.x < 0){
+			myLink_direction = 'right'}
+	}
+	
+
+
+	window.onresize = function() {
+		resizeCanvas(window.innerWidth,window.innerHeight);
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<html><head></head><body><pre>
+<h1 style='color:gray;'>Test Array</h1 style='color:black;'>
+First, we're just going to create an array (actually two), then populate the first
+one, then iterate over it and print it out. 
+
+/ create two empty arrays
+var a = [], b = [];
+// populate a with 10 numbers
+for (var x=10; x<20; x++){
+	a.push(x);
+	}
+	
+// print them out
+for (var y in a){
+	document.writeln('a = ' + a[y]);
+	}
+<p style='color:blue;'><script>
+// create two empty arrays
+var a = [], b = [];
+// populate a with 10 numbers
+for (var x=10; x<20; x++){
+	a.push(x);
+	}
+// print them out
+for (var y in a){
+	document.writeln('a = ' + a[y]);
+	}
+</script><p style='color:black'>
+Next we will populate b with 10 copies of a, so each element of b is a copy of the 
+array a, then print <i>that</i> out with a nested for-loop. 
+
+// populate b with 10 versions of a
+for (var x=10; x<20; x++){
+	b.push(a);
+	} 
+	
+// print out b
+for (thing in a){
+	for (thing2 in b){
+		document.writeln('outer = ' + a[thing] + ' inner = ' + b[thing2][thing2]);
+	}
+}
+<p style='color:blue;'><script>
+// populate b with 10 versions of a
+for (var x=10; x<20; x++){
+	b.push(a);
+	} 
+// print out b
+for (thing in a){
+	for (thing2 in b){
+		document.writeln('outer = ' + a[thing] + ' inner = ' + b[thing2][thing2]);
+	}
+}
+
+
+</script><p style='color:black'>
+</pre></body></html>
+	

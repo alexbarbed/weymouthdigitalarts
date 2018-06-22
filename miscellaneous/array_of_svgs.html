@@ -1,0 +1,74 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--iphone stuff-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+ <meta name="apple-mobile-web-app-capable" content="yes" />
+ <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+ <meta name="HandheldFriendly" content="true" />		
+ <meta name="mobile-web-app-capable" content="yes" />
+  <style> body {padding: 0; margin: 0} </style> <!-- this line removes any default padding -->
+  <script language="javascript" type="text/javascript" src="../libraries/p5.js"></script> 
+  <!-- uncomment lines below to include extra p5 libraries -->
+  <script language="javascript" src="../libraries/p5.dom.js"></script>
+  <script language="javascript" src="../libraries/p5.sound.js"></script>
+ 
+  <script>
+  
+		var robotImage;
+		var bots = [];  // Declare array to hold Robot objects
+
+		function preload() {
+		  robotImage = loadImage("assets/drawing.svg");
+		}
+
+		function setup() {
+		  createCanvas(1700, 800);
+
+		  var numRobots = 50;
+
+		  // Create each object
+		  for (var i = 0; i < numRobots; i++) {
+			// Create a random x coordinate
+			var x = random(-40, width-40);
+			// Assign the y coordinate based on the order
+			var y = map(i, 0, numRobots, -100, height-200);
+			bots[i] = new Robot(robotImage, x, y);
+		  }
+		}
+
+		function draw() {
+		  background(255,255,255);
+		  // Update and display each bot in the array
+		  for (var i = 0; i < bots.length; i++) {
+			bots[i].update();
+			bots[i].display();
+		  }
+		}
+
+		function Robot(img, tempX, tempY, testSound) {
+		  // Set initial values for properties
+		  this.xpos = tempX;
+		  this.ypos = tempY;
+		  this.angle = random(0, TWO_PI);
+		  this.botImage = img;
+		  this.yoffset = 0.0;
+		  this.s = random(10, 500);
+
+		 // Update the properties
+		  this.update = function() {
+			this.angle += 0.05;
+			this.yoffset = sin(this.angle) * 40;
+		  }
+
+		  // Draw the robot to the screen
+		  this.display = function() {
+			image(this.botImage, this.xpos, this.ypos + this.yoffset, this.s, this.s);
+		  }
+		}
+	</script>
+</head>
+
+<body>
+</body>
+</html>

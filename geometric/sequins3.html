@@ -1,0 +1,153 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--iphone stuff-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+ <meta name="apple-mobile-web-app-capable" content="yes" />
+ <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+ <meta name="HandheldFriendly" content="true" />		
+ <meta name="mobile-web-app-capable" content="yes" />
+  <style> body {padding: 0; margin: 0} </style> <!-- this line removes any default padding -->
+  <script language="javascript" type="text/javascript" src="../libraries/p5.js"></script> 
+  <!-- uncomment lines below to include extra p5 libraries -->
+  <script language="javascript" src="../libraries/p5.dom.js"></script>
+  <!--<script language="javascript" src="libraries/p5.sound.js"></script>-->
+ 
+  <script>
+  
+	var SB = {};
+	
+	SB.screenHeight = 700;
+	SB.screenWidth = 1000;
+	SB.beadWidth = 50; // width of each bead
+	SB.beadHeight = 50; // height of each bead
+	SB.stringOfBeadsLength = Math.floor(SB.screenHeight / SB.beadHeight);
+	SB.curtainOfBeadsLength = Math.floor(SB.screenWidth / SB.beadWidth);
+	SB.stringOfBeads = [];
+	SB.curtainOfStrings = [];
+	SB.palette = [
+		'#030102', //‭ ‭0 - 196,866‬
+		'#37241a', //‭ ‭1 - 3,613,722‬
+		'#6f2b22', //‭ 2 - ‭7,285,538‬
+		'#8f3a25', //‭ 3 - ‭9,386,533‬
+		'#a74d32', //‭ ‭4 - 10,964,274‬
+		'#ac4f30', //‭ ‭5 - 11,292,464‬
+		'#ca623c', //‭ ‭6 - 13,263,420‬
+		'#d1693e', //‭ ‭7 - 13,723,966‬
+		'#d88845', //‭ 8 - 14,190,661‬
+		'#eb943d', //‭ 9 - 15,438,909‬
+		'#cc9036', // 10 - ‭13,406,262‬
+		'#f2b34a', //‭ ‭11 - 15,905,610‬
+		'#d6ca48', // ‭12 - 14,076,488‬
+		'#e3cc35', //‭ ‭13 - 14,928,949‬
+		'#fcd53b', //‭ 14 - ‭16,569,659 //strong yellow...
+		'#f8f38b', //‭ ‭15 - 16,315,275‬
+		'#ffe34e', //‭ 16 - ‭16,769,870‬ //yellow
+		'#f2f6d3', //‭ 17 - ‭15,922,899 //white?
+		//'#f8f3fd', //‭ ‭18 - 16,315,389‬ //white?
+		//'#faf4fb', //‭ 19 - 16,446,715‬ //white?
+		//'#fef7fb', //‭ 20 - ‭16,709,627‬ //white
+	];
+	
+	SB.paletteLength = SB.palette.length-1;
+	
+	SB.selectRandomColour = function(){
+		var r = Math.floor(random(1, SB.paletteLength));
+		//return SB.palette[r];
+		return r;
+	};
+	
+	// constructor for bead
+	function bead(x,y,w,h) {
+		this.w = w*random();
+		this.h = h;
+		this.x = x;
+		this.y = y;
+		this.c = SB.selectRandomColour();
+		this.direction = 'forwards';
+		this.spin = 'shrink';
+		this.speed = random();
+		this.drawMe = function(){
+			fill(SB.palette[this.c]);
+			ellipse(this.x, this.y, this.w, this.h);
+		}
+		this.setMe = function(x,y,w,h){
+			this.x = x;
+			this.y = y;
+			this.w = w;
+			this.h = h;
+		}
+		this.cycleMe = function(){
+			if (this.direction === 'forwards'){
+				++this.c;
+				if(this.c >= SB.paletteLength){
+					this.direction = 'backwards';
+				}
+			}
+			else{
+				--this.c;
+				if(this.c <= 1){
+					this.direction = 'forwards';
+				}
+			}	
+		}
+		this.spinMe = function(){
+			if (this.spin === 'grow'){
+				this.w += this.speed;
+				if(this.w >= SB.beadWidth-10){
+					this.spin = 'shrink';
+				}
+			}
+			else{
+				this.w -= this.speed;
+				if(this.w <= 1){
+					this.spin = 'grow';
+				}
+			}
+		}
+	}
+	
+	function makeStringOfBeads(x){
+		// create one string of beads the height of the screen
+		var tempStringOfBeads = [];
+		for (var counter = 0; counter < SB.screenHeight; counter += SB.beadHeight){
+			var b = new bead(x, counter, SB.beadWidth, SB.beadHeight);
+			tempStringOfBeads.push(b);
+			}
+		return tempStringOfBeads;
+	}
+	
+	function makeCurtainOfStrings(){
+		// create a curtain of strings the width of the screen
+		var tempCurtainOfStrings = [];
+		for (var counter = 0; counter < SB.screenWidth; counter += SB.beadWidth){
+			var s = makeStringOfBeads(counter);
+			tempCurtainOfStrings.push(s);
+			}
+		return tempCurtainOfStrings;
+	}
+	
+	function setup(){		
+		createCanvas(SB.screenWidth, SB.screenHeight);
+		//SB.stringOfBeads = makeStringOfBeads(100);
+		SB.curtainOfStrings = makeCurtainOfStrings();
+		}
+		
+	function draw(){
+		background(0);
+		for (var s=0; s<SB.curtainOfBeadsLength; s++){
+			for (var b=0; b<SB.stringOfBeadsLength; b++){
+				SB.curtainOfStrings[s][b].spinMe();
+				SB.curtainOfStrings[s][b].cycleMe();
+				SB.curtainOfStrings[s][b].drawMe();
+			}
+		}
+	}
+	
+</script>
+
+</head>
+
+<body>
+</body>
+</html>

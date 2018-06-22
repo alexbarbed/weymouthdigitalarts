@@ -1,0 +1,61 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script language="javascript" type="text/javascript" src="../libraries/p5.js"></script>
+</head>
+
+<body>
+<script>
+
+    var img;
+	// here
+	var initialTime;
+	var interval = 1000;
+	var counter = 0;
+
+    function preload() {
+    }
+
+    function setup() {
+      createCanvas(800, 500);
+	  textSize(200);
+	  // here
+	  initialTime = millis();
+    }
+
+    function draw() {
+	  background(255);
+	  
+	  // here
+	  if (millis() - initialTime > interval){
+		initialTime = millis();
+		counter++;
+	  }
+	  
+	  if (counter > 5){
+			counter = 0;
+	  }
+	  
+	  if (counter == 5){
+		text("FIVE", 100, 200);
+	  } else 
+	  if (counter == 4){
+		text("FOUR", 100, 200);
+	  } else 
+	  if (counter == 3){
+		text("THREE", 100, 200);
+	  } else 
+	  if (counter == 2){
+		text("TWO", 100, 200);
+	  } else 
+	  if (counter == 1){
+		text("ONE", 100, 200);
+	  } else {
+		text("NONE", 100, 200);
+	  }
+
+}
+</script>
+</body>
+</html>
+

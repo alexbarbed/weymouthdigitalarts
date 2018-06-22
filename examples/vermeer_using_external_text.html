@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>using text</title>
+    <script src="../libraries/p5.js" type="text/javascript"></script>
+		<script src="../libraries/p5.utilities.js" type="text/javascript"></script>
+  </head>
+  <body>
+	<script>
+	
+		var text_content_1;
+		var text_content_2;
+	
+		function preload(){
+			myFont = loadFont("assets/ADAM.CG PRO.otf");
+			vermeer_image = loadImage("assets/Jan_Vermeer_van_Delft_014.jpg");
+			text_content_1 = FileHelper.getText ( "assets/vermeer_text_1.txt" );
+			text_content_2 = FileHelper.getText ( "assets/vermeer_text_2.txt" );
+		}
+		
+		function setup(){
+			// draw window
+			createCanvas(1000,2000);
+			background('#e1dbe7');
+			noStroke();
+			// heading text
+			textFont(myFont);
+			textSize(45);
+			textAlign(LEFT, TOP);
+			text("Vermeer: The Music Lesson", 0, 15);
+			// draw image
+			image(vermeer_image,0,0,0,0,0,75,500,574);
+			// reference text
+			textSize(8);
+			text("image source: https://upload.wikimedia.org/wikipedia/commons/4/49/Jan_Vermeer_van_Delft_014.jpg", 0,650);
+			// text to the right
+			textSize(15);
+			text(text_content_1, 510, 75, 400);
+			// text under picture
+			textSize(15);
+			text(text_content_2, 0, 670, 874);
+		}
+		
+		
+		
+		
+	</script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!--iphone stuff-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+ <meta name="apple-mobile-web-app-capable" content="yes" />
+ <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+ <meta name="HandheldFriendly" content="true" />		
+ <meta name="mobile-web-app-capable" content="yes" />
+  <style> body {padding: 0; margin: 0} </style> <!-- this line removes any default padding -->
+  <script language="javascript" type="text/javascript" src="../libraries/p5.js"></script> 
+  <!-- uncomment lines below to include extra p5 libraries -->
+  <script language="javascript" src="../libraries/p5.dom.js"></script>
+  <!--<script language="javascript" src="libraries/p5.sound.js"></script>-->
+  
+  
+  <script>
+  function setup(){
+	createCanvas(900, 900);
+	frameRate(5);
+	noStroke();
+	ellipseMode(CORNER);
+}
+
+function draw(){
+	background(242, 225, 173);
+	for (i=0; i<width; i+=50){
+		for (j=0; j<height; j+=50){
+			fill(random(210,255),random(map(i,0,width,0,255)),random(125, 150));
+			ellipse(i+random(2), j+random(2), 50, 50)
+		}
+	}
+}
+  </script>
+
+</head>
+
+<body>
+</body>
+</html>
